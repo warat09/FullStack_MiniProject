@@ -1,22 +1,20 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import {Document} from 'mongoose'
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export type TeacherDocument = Teacher & Document
+export type TeacherDocument = Teacher & Document;
 
 @Schema()
-export class Teacher{
-    
-    @Prop()
-    Teacher_ID: Number;
+export class Teacher {
+  @Prop()
+  Teacher_ID: string;
 
-    @Prop()
-    Teacher_TeachID: Number;
+  @Prop()
+  Teacher_TeachID: string;
 
-    @Prop()
-    Teacher_Name:String;
+  @Prop()
+  Teacher_Name: string;
 
-    @Prop()
-    Teacher_DOB:String;
-
+  @Prop()
+  Teacher_DOB: string;
 }
-export const TeacherSchema = SchemaFactory.createForClass(Teacher)
+export const TeacherSchema = SchemaFactory.createForClass(Teacher);
