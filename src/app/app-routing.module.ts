@@ -7,15 +7,20 @@ import { DropCourseComponent } from './drop-course/drop-course.component';
 import { CheckRegisterComponent } from './check-register/check-register.component';
 import { GradeComponent } from './grade/grade.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { HomeComponent } from './home/home.component';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path:'Register', component: RegisterComponent },
-  { path:'addCourse', component: AddCourseComponent},
-  { path:'changeSection', component: ChangesectionComponent },
-  { path:'dropCourse', component: DropCourseComponent},
-  { path:'checkRegister', component: CheckRegisterComponent},
-  { path:'grade', component: GradeComponent},
-  { path:'schedule', component: ScheduleComponent}
+  // {path:'Home',component:HomeComponent,data:{title:'หน้าหลัก'},},
+  // { path:'Register', component: RegisterComponent,data: {title: 'ลงวิชาเรียน'} },
+  // { path:'addCourse', component: AddCourseComponent,data: {title: 'เพิ่มวิชาเรียน'}},
+  // { path:'changeSection', component: ChangesectionComponent,data: {title: 'เปลี่ยนตอนเรียน'} },
+  // { path:'dropCourse', component: DropCourseComponent,data: {title: 'ถอนวิชาเรียน'}},
+  // { path:'checkRegister', component: CheckRegisterComponent,data: {title: 'ผลลงทะเบียน'}},
+  // { path:'grade', component: GradeComponent,data: {title: 'ผลการเรียน'}},
+  // { path:'schedule', component: ScheduleComponent,data: {title: 'ตารางสอน'}},
+  { path:'', component: LoginComponent,data: {title: 'Login'}}
 ];
 
 @NgModule({
