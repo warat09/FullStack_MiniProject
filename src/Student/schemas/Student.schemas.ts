@@ -9,11 +9,17 @@ export class Student {
   Student_ID: string;
 
   @Prop()
-  Student_StuID: string;
+  Student_ID_Student: string;
+
+  @Prop()
+  Student_Password: string;
 
   @Prop()
   Student_Name: string;
 
+  @Prop()
+  Student_Sur_Name:string;
+  
   @Prop()
   Student_Phone: string;
 
@@ -28,5 +34,6 @@ export class Student {
 
   @Prop()
   Student_DOB: string;
+
 }
 export const StudentSchema = SchemaFactory.createForClass(Student);

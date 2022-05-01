@@ -20,7 +20,7 @@ export class TeacherService {
 
   async LoginUserCheck(ID:string): Promise<Teacher|undefined|null>{
     let result:any;
-    await this.TeacherModel.findOne({ Teacher_TeachID: ID }).then(r => result=r);
+    await this.TeacherModel.findOne({ Teacher_ID_Teacher: ID }).then(r => result=r);
     return result;
     // return this.UsersModel.findOne({Student_ID:student_ID});
   }

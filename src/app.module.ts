@@ -1,3 +1,5 @@
+import { TeachService } from './Teach/service/Teach.service';
+import { RegistrationService } from './Registration/service/Registration.service';
 import { StudentModel } from './Student/Student.module';
 import { AuthService } from './Authentication/auth.service';
 import { JwtService } from '@nestjs/jwt';
@@ -20,8 +22,14 @@ import { Subject, SubjectSchema } from './Subject/schemas/Subject.schemas';
 import { SubjectController } from './Subject/controller/Subject.controller';
 import { SubjectService } from './Subject/service/Subject.service';
 import { ConfigModule } from '@nestjs/config';
+
+
 import { MainModule } from './Main/Main.module';
 
+
+import { Registration, RegistrationSchema } from './Registration/schemas/Registration.schemas';
+
+import { Teach, TeachSchema } from './Teach/schemas/Teach.schemas';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env' }),
@@ -32,12 +40,16 @@ import { MainModule } from './Main/Main.module';
     MongooseModule.forFeature([{ name: Student.name, schema: StudentSchema }]),
     MongooseModule.forFeature([{ name: Teacher.name, schema: TeacherSchema }]),
     MongooseModule.forFeature([{ name: Subject.name, schema: SubjectSchema }]),
+    MongooseModule.forFeature([{ name: Registration.name, schema: RegistrationSchema}]),
+    MongooseModule.forFeature([{ name: Teach.name, schema: TeachSchema}])
   ],
   controllers: [
     AppController,
     MainController,
-    StudentController
+    StudentController,
+    SubjectController,
+    TeacherController
   ],
-  providers: [AppService, StudentService, TeacherService, SubjectService],
+  providers: [AppService, StudentService, TeacherService, SubjectService, RegistrationService , TeachService],
 })
 export class AppModule {}

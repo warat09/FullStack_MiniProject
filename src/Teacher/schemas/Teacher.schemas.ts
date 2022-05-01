@@ -9,10 +9,16 @@ export class Teacher {
   Teacher_ID: string;
 
   @Prop()
-  Teacher_TeachID: string;
+  Teacher_ID_Teacher: string;
+
+  @Prop()
+  Teacher_Password: string;
 
   @Prop()
   Teacher_Name: string;
+
+  @Prop()
+  Teacher_Sur_Name: string;
 
   @Prop()
   Teacher_DOB: string;
