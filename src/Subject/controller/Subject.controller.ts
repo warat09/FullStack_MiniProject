@@ -10,6 +10,29 @@ export class SubjectController {
   }
   @Post()
   async createSubject(@Body() SubjectDto: Subject): Promise<Subject> {
-    return this.SubjectService.createSubject(SubjectDto);
+    console.log(SubjectDto.Requirement_Subject.toString()==="")
+    let newSubject:Subject;
+    if(SubjectDto.Requirement_Subject.toString()==="")
+    {
+      newSubject = {
+        Subject_ID:SubjectDto.Subject_ID,
+        Subject_Name:SubjectDto.Subject_Name,
+        Subject_Des:SubjectDto.Subject_Des,
+        Subject_Student_Year:SubjectDto.Subject_Student_Year,
+        Requirement_Subject:[]
+      }
+    }
+    else
+    {
+      newSubject = {
+        Subject_ID:SubjectDto.Subject_ID,
+        Subject_Name:SubjectDto.Subject_Name,
+        Subject_Des:SubjectDto.Subject_Des,
+        Subject_Student_Year:SubjectDto.Subject_Student_Year,
+        Requirement_Subject:SubjectDto.Requirement_Subject.toString().split(",")
+      }
+    }
+    return this.SubjectService.createSubject(newSubject);
   }
+  
 }

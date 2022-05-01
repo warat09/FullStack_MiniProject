@@ -17,4 +17,13 @@ export class SubjectService {
     return this.SubjectsModel.find().exec();
   }
   
+  async findReqFromID(Sub_ID:string): Promise<Array<string>>
+  {
+    const result:Subject = await this.SubjectsModel.findOne({Subject_ID:Sub_ID});
+    return result.Requirement_Subject
+  }
+  
+  async findSubjectByID(Sub_ID:string):Promise<Subject>{
+    return this.SubjectsModel.findOne({Subject_ID:Sub_ID});
+  }
 }
