@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <body>
-      <!-- <nav>
+<div>
+    <nav>
         <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
         <li><a routerLink="addCourse">เพิ่มวิชาเรียน</a></li>
         <li><a routerLink="changeSection">เปลี่ยนตอนเรียน</a></li>
@@ -9,15 +7,9 @@
         <li><a routerLink="checkRegister">ผลลงทะเบียน</a></li>
         <li><a routerLink="grade">ผลการเรียน</a></li>
         <li><a routerLink="schedule">ตารางสอน/สอบ</a></li>
-      </nav> -->
+      </nav>
+      <p>{{Username}}</p>
+     <router-outlet></router-outlet>
+</div>
 
-      <!-- <form [formGroup]="form"> -->
-      <!-- <input type="text" placeholder="Login" formControlName="Username"/>
-      <input type="password" placeholder="password" formControlName="Password"/>
-      <button type="submit">ตกลง</button> -->
-      <!-- </form> -->
-      <router-outlet></router-outlet>
-    </body>
-</html>
-
-
+  

@@ -10,6 +10,11 @@ import { DropCourseComponent } from './drop-course/drop-course.component';
 import { CheckRegisterComponent } from './check-register/check-register.component';
 import { GradeComponent } from './grade/grade.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { HomeRoutingModule } from './home/home-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,11 +25,17 @@ import { ScheduleComponent } from './schedule/schedule.component';
     DropCourseComponent,
     CheckRegisterComponent,
     GradeComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,25 @@
-<p>register works!</p>
+<!DOCTYPE html>
+<html>
+    <body>
+            <table>
+                <tr>
+                  <th>Company</th>
+                  <th>Contact</th>
+                  <th>Country</th>
+                </tr>
+                <tr *ngFor="let n of food">
+                    <th>
+                        <input type="checkbox" [value]="n.id" [checked]="n.select" (change)="onChangeClick($event)"/>
+                    </th>
+                  <td>{{n.name}}</td>
+                </tr>
+                <tr>
+                  <td>Centro comercial Moctezuma</td>
+                  <td>Francisco Chang</td>
+                  <td>Mexico</td>
+                </tr>
+              </table>
+
+    </body>
+</html>
+
