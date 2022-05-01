@@ -218,7 +218,7 @@ export class MainController {
   @Get("/AvailableSubject/:id")
   async GetAvailableSubject(@Param() params)
   {
-    const SubjectResult:Array<Subject> = [];
+    const SubjectResult:any = [];
     const currentSemester = "1";
     const Profile:Student =  await this.StudentService.getStudentData(params.id);
     const OpenSubject = await this.TeachService.getTeachByYearAndSec(this.currentYear.getFullYear()+543,Profile.Student_Section,currentSemester);
@@ -260,16 +260,25 @@ export class MainController {
         await this.SubjectService.findSubjectByID(Subject.Subject_ID).then(res=>{
           if(((this.currentYear.getFullYear()+543)-Profile.Student_Year)+1>=res.Subject_Student_Year)
           {
-            data = {
-              Subject_ID:res.Subject_ID,
-              Subject_Name:res.Subject_Name,
-              Subject_Des:res.Subject_Des,
-              Subject_Section:Subject.Teach_Section_Num,
-              Subject_Date:Subject.Teach_Date,
-              Subject_Time:Subject.Teach_Time,
-              Subject_Checked:false
+            const last = SubjectResult[SubjectResult.length-1];
+            if(SubjectResult.length!==0&&last.Subject_ID === res.Subject_ID)
+            {
+              last.Subject_SectionList.push(Subject.Teach_Section_Num);
             }
-            SubjectResult.push(data);
+            else
+            {
+              data = {
+                Subject_ID:res.Subject_ID,
+                Subject_Name:res.Subject_Name,
+                Subject_Des:res.Subject_Des,
+                Subject_Section:Subject.Teach_Section_Num,
+                Subject_SectionList:[Subject.Teach_Section_Num],
+                Subject_Date:Subject.Teach_Date,
+                Subject_Time:Subject.Teach_Time,
+                Subject_Checked:false
+              }
+              SubjectResult.push(data);
+            }
           }
         });
       }
