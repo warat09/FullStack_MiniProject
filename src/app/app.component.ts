@@ -179,6 +179,10 @@ export class AppComponent {
       }
     })
   }
+  onchangeSection()
+  {
+    console.log(this.register)
+  }
   onSubmitRegistration(f:FormGroup):void{
     this.http.post("http://localhost:9090/Main/Registration",{
       Subject_ID:f.get("Subject_ID")?.value,

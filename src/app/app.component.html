@@ -10,6 +10,11 @@
 <div *ngIf="register">
   <div *ngFor="let list of register.Result">
     <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked"> {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section}}
+    <select [(ngModel)]="list.Subject_Section" (change)="onchangeSection()">
+      <option *ngFor="let sublist of list.Subject_SectionList" [value]="sublist">
+        {{sublist}}
+       </option>
+    </select>
   </div>
   <div>
     <button (click)="onSubmitRegistrationArray()">Register</button>
@@ -18,6 +23,11 @@
 <div *ngIf="register">
   <div *ngFor="let list of register.Result">
     <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked"> {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section}}
+    <select [(ngModel)]="list.Subject_Section" (change)="onchangeSection()">
+      <option *ngFor="let sublist of list.Subject_SectionList" [value]="sublist">
+        {{sublist}}
+       </option>
+    </select>
   </div>
   <div>
     <button (click)="onSubmitAddRegistration()">Add Subject</button>
