@@ -14,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
 const routes: Routes = [
   {path:'Home',component:HomeComponent,data:{title:'หน้าหลัก'},children:
 [
-  { path:'Register', component: RegisterComponent,data: {title: 'ลงวิชาเรียน'} },
+  { path:'Register', component: RegisterComponent,data: {title: 'ลงวิชาเรียน'}},
   { path:'addCourse', component: AddCourseComponent,data: {title: 'เพิ่มวิชาเรียน'}},
   { path:'changeSection', component: ChangesectionComponent,data: {title: 'เปลี่ยนตอนเรียน'} },
   { path:'dropCourse', component: DropCourseComponent,data: {title: 'ถอนวิชาเรียน'}},
@@ -22,8 +22,8 @@ const routes: Routes = [
   { path:'grade', component: GradeComponent,data: {title: 'ผลการเรียน'}},
   { path:'schedule', component: ScheduleComponent,data: {title: 'ตารางสอน'}},
 ]
-},
-  
+}, { path:"**",redirectTo:"",pathMatch:"full"}
+
 ];
 
 @NgModule({

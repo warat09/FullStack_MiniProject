@@ -10,6 +10,7 @@ import { CheckRegisterComponent } from '../check-register/check-register.compone
 import { GradeComponent } from '../grade/grade.component';
 import { ScheduleComponent } from '../schedule/schedule.component';
 import { HomeComponent } from '../home/home.component';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 
 
 
@@ -22,11 +23,21 @@ import { HomeComponent } from '../home/home.component';
     CheckRegisterComponent,
     GradeComponent,
     ScheduleComponent,
-    HomeComponent,
+  ],
+  exports:[
+    RegisterComponent,
+    AddCourseComponent,
+    ChangesectionComponent,
+    DropCourseComponent,
+    CheckRegisterComponent,
+    GradeComponent,
+    ScheduleComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }
