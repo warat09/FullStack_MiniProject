@@ -14,8 +14,6 @@ import { Request } from 'express';
 import { Subject } from 'src/Subject/schemas/Subject.schemas';
 import * as bcrypt from 'bcrypt';
 
-
-
 @Controller('Main')
 export class MainController {
   private currentYear:Date;
@@ -91,18 +89,33 @@ export class MainController {
       }
     }
   }
-  
+
+  @UseGuards(JwtAuthGuard)
+  @Get("/Tokencheck")
+  async Tokencheck()
+  {
+    return {message:"PASS"};
+  }
 
   @Get("/GetSubject")
   async GetSubject(@Req() req:Request)
   {
     return this.StudentService.findAll();
   }
+  @Get("/AlreadyRegis/:id")
+  async AlreadyRegis(@Param() params)
+  {
+    const AlreadyRegis = await this.RegistrationService.getAlreadyRegistDataByID(params.id);
+    if(AlreadyRegis.length>0)
+    {
+      return {result:true};
+    }
+    return {result:false};
+  }
   @Post("/AddRegistrationList/:id")
   async AddRegistrationList(@Body() listRegistration:any,@Param() params)
   {
     const AlreadyRegis = await this.RegistrationService.getAlreadyRegistDataByID(params.id);
-    console.log(AlreadyRegis);
     const DateChecker =[]
     const DateData = [];
     const result = [];
@@ -137,7 +150,7 @@ export class MainController {
         }
       }
     }
-    for(const subject of DateData)
+    for(const subject of listRegistration.Data)
     {
       await this.TeachService.AddStudentCount(subject.Subject_ID,this.currentYear.getFullYear()+543,currentSemester);
       const newRegistration:Registration={
@@ -260,10 +273,20 @@ export class MainController {
         await this.SubjectService.findSubjectByID(Subject.Subject_ID).then(res=>{
           if(((this.currentYear.getFullYear()+543)-Profile.Student_Year)+1>=res.Subject_Student_Year)
           {
-            const last = SubjectResult[SubjectResult.length-1];
-            if(SubjectResult.length!==0&&last.Subject_ID === res.Subject_ID)
+            let checkSection = false;
+            let i = SubjectResult.length-1;
+            for(i;i>=0;i--)
             {
-              last.Subject_SectionList.push(Subject.Teach_Section_Num);
+              if(SubjectResult[i].Subject_ID=== res.Subject_ID){
+                checkSection = true;
+                break;
+              }
+            }
+            if(checkSection)
+            {
+              SubjectResult[i].Subject_SectionList.push(Subject.Teach_Section_Num);
+              SubjectResult[i].Subject_DateList.push(Subject.Teach_Date);
+              SubjectResult[i].Subject_TimeList.push(Subject.Teach_Time);
             }
             else
             {
@@ -274,7 +297,9 @@ export class MainController {
                 Subject_Section:Subject.Teach_Section_Num,
                 Subject_SectionList:[Subject.Teach_Section_Num],
                 Subject_Date:Subject.Teach_Date,
+                Subject_DateList:[Subject.Teach_Date],
                 Subject_Time:Subject.Teach_Time,
+                Subject_TimeList:[Subject.Teach_Time],
                 Subject_Checked:false
               }
               SubjectResult.push(data);
