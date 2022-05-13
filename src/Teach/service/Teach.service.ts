@@ -34,4 +34,8 @@ export class TeachService {
     {
         return this.TeachModel.findOne({Subject_ID:id,Teach_Year:year,Teach_Section_Num:sec})
     }
+    async getTeachBySubject_Year_Semester_SecNum(id:string,year:number,semester:string,sec:string):Promise<Teach>
+    {
+        return this.TeachModel.findOne({Subject_ID:id,Teach_Year:year,Teach_Semester:semester,Teach_Section_Num:sec})
+    }
 }

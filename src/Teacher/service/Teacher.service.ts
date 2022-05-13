@@ -24,4 +24,10 @@ export class TeacherService {
     return result;
     // return this.UsersModel.findOne({Student_ID:student_ID});
   }
+
+  async getTeacherData(ID:string)
+  {
+    return this.TeacherModel.findOne({ Teacher_ID_Teacher: ID });
+  }
+
 }

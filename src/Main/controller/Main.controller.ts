@@ -17,6 +17,7 @@ import * as bcrypt from 'bcrypt';
 @Controller('Main')
 export class MainController {
   private currentYear:Date;
+  private currentSemester:string;
   constructor(
     private readonly StudentService: StudentService,
     private readonly TeacherService: TeacherService,
@@ -26,6 +27,7 @@ export class MainController {
     private readonly AuthService:AuthService,
     ) {
       this.currentYear = new Date();
+      this.currentSemester = "1";
     }
   @Post("/login")
   async Login(@Req() req:Request) {
@@ -51,16 +53,17 @@ export class MainController {
       case "Student":{
         if(await bcrypt.compare(Password,resultSTU.Student_Password))
         {
-          const payload = {username:resultSTU.Student_ID_Student.toString()+resultSTU.Student_ID,sub:resultSTU.Student_Name}
+          const payload = {user_ID:resultSTU.Student_ID_Student.toString()+resultSTU.Student_ID,Name:resultSTU.Student_Name+resultSTU.Student_Sur_Name}
           console.log("Student");
           return {
             Type:"Student",
             message:"Login success!!",
-            Token:await this.AuthService.login(payload),
+            Token:await this.AuthService.GetToken(payload),
             User_Name:resultSTU.Student_Name,
             User_Phone:resultSTU.Student_Phone,
             User_ID:resultSTU.Student_ID,
-            User_ID_2:resultSTU.Student_ID_Student};
+            User_ID_2:resultSTU.Student_ID_Student,
+            User_Year:resultSTU.Student_Year};
         }
         else
         {
@@ -77,7 +80,7 @@ export class MainController {
           return {
             Type:"Teachers",
             message:"Login success!!",
-            Token:await this.AuthService.login(payload),
+            Token:await this.AuthService.GetToken(payload),
             User_Email:resultTEACH.Teacher_Name
           };
         }
@@ -119,14 +122,13 @@ export class MainController {
     const DateChecker =[]
     const DateData = [];
     const result = [];
-    const currentSemester = "1";
     for(const registed of AlreadyRegis)
     {
-      DateChecker.push(await this.TeachService.getTeachBySubject_Year_SecNum(registed.Subject_ID,this.currentYear.getFullYear()+543,registed.Registration_Section));
+      DateChecker.push(await this.TeachService.getTeachBySubject_Year_Semester_SecNum(registed.Subject_ID,this.currentYear.getFullYear()+543,this.currentSemester,registed.Registration_Section));
     }
     for(const subject of listRegistration.Data)
     {
-      DateData.push(await this.TeachService.getTeachBySubject_Year_SecNum(subject.Subject_ID,this.currentYear.getFullYear()+543,subject.Registration_Section));
+      DateData.push(await this.TeachService.getTeachBySubject_Year_Semester_SecNum(subject.Subject_ID,this.currentYear.getFullYear()+543,this.currentSemester,subject.Registration_Section));
     }
     for(const AddData of DateData)
     {
@@ -152,7 +154,7 @@ export class MainController {
     }
     for(const subject of listRegistration.Data)
     {
-      await this.TeachService.AddStudentCount(subject.Subject_ID,this.currentYear.getFullYear()+543,currentSemester);
+      await this.TeachService.AddStudentCount(subject.Subject_ID,this.currentYear.getFullYear()+543,this.currentSemester);
       const newRegistration:Registration={
         Subject_ID:subject.Subject_ID,
         Student_ID_Student:subject.Student_ID_Student,
@@ -174,7 +176,7 @@ export class MainController {
     const currentSemester = "1";
     for(const subject of listRegistration.Data)
     {
-      DateChecker.push(await this.TeachService.getTeachBySubject_Year_SecNum(subject.Subject_ID,this.currentYear.getFullYear()+543,subject.Registration_Section));
+      DateChecker.push(await this.TeachService.getTeachBySubject_Year_Semester_SecNum(subject.Subject_ID,this.currentYear.getFullYear()+543,this.currentSemester,subject.Registration_Section));
       // console.log(newRegistration)
       for(let i =0;i<DateChecker.length-1;i++)
       {
@@ -227,16 +229,15 @@ export class MainController {
     }
     return this.RegistrationService.createRegistration(newRegistration)
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get("/AvailableSubject/:id")
   async GetAvailableSubject(@Param() params)
   {
     const SubjectResult:any = [];
-    const currentSemester = "1";
     const Profile:Student =  await this.StudentService.getStudentData(params.id);
-    const OpenSubject = await this.TeachService.getTeachByYearAndSec(this.currentYear.getFullYear()+543,Profile.Student_Section,currentSemester);
+    const OpenSubject = await this.TeachService.getTeachByYearAndSec(this.currentYear.getFullYear()+543,Profile.Student_Section,this.currentSemester);
     const PassSubject = await this.RegistrationService.getPassSubjectByID(Profile.Student_ID_Student);
-    const AlreadyRegis = await this.RegistrationService.getAlreadyRegisByID(Profile.Student_ID_Student);
+    const AlreadyRegis = await this.RegistrationService.getAlreadyRegisByID(Profile.Student_ID_Student,this.currentYear.getFullYear()+543,this.currentSemester);
     for(const Subject of OpenSubject)
     {
       const Req: Array<string> = await this.SubjectService.findReqFromID(Subject.Subject_ID);
@@ -340,4 +341,84 @@ export class MainController {
   {
     return this.StudentService.UpdateYearALL(req.body.year);
   }
+
+  @Get("/GetSchedule/:id/:year/:semester")
+  async GetSchedule(@Param() params)
+  {
+    const result:any = []
+    const registedSubject = await this.RegistrationService.getAlreadyRegisByID_Year_Semester(params.id,params.year,params.semester);
+    for(const subject of registedSubject)
+    {
+      const teach_Data = await this.TeachService.getTeachBySubject_Year_Semester_SecNum(subject.Subject_ID,subject.Registration_Year,subject.Registration_Semester,subject.Registration_Section);
+      const teacher_Data = await this.TeacherService.getTeacherData(teach_Data.Teach_ID);
+      const subject_Detail = await this.SubjectService.findSubjectByID(teach_Data.Subject_ID);
+      result.push(
+        {
+          Subject_ID:subject_Detail.Subject_ID,
+          Subject_Name:subject_Detail.Subject_Name,
+          Subject_Des:subject_Detail.Subject_Des,
+          Subject_Year:subject_Detail.Subject_Student_Year,
+          Teacher_ID_Teacher:teacher_Data.Teacher_ID_Teacher,
+          Teacher_Name:teacher_Data.Teacher_Name,
+          Teacher_Sur_Name:teacher_Data.Teacher_Sur_Name,
+          Subject_Section_Num:subject.Registration_Section,
+          Teach_Date:teach_Data.Teach_Date,
+          Teach_Time:teach_Data.Teach_Time,
+          Exam_Date:teach_Data.Exam_Date,
+          Exam_Time:teach_Data.Exam_Time,
+          Registration_GPA:subject.Registration_GPA,
+          Subject_Checked:false
+        }
+      )
+    }
+    return result;
+  }
+  @Get("/GetRegistrationResult/:id/:year/:semester")
+  async GetRegistrationResult(@Param() params)
+  {
+    const result:any = []
+    const registedSubject = await this.RegistrationService.getAlreadyRegisByID_Year_Semester_withDroped(params.id,params.year,params.semester);
+    for(const subject of registedSubject)
+    {
+      const teach_Data = await this.TeachService.getTeachBySubject_Year_Semester_SecNum(subject.Subject_ID,subject.Registration_Year,subject.Registration_Semester,subject.Registration_Section);
+      const teacher_Data = await this.TeacherService.getTeacherData(teach_Data.Teach_ID);
+      const subject_Detail = await this.SubjectService.findSubjectByID(teach_Data.Subject_ID);
+      result.push(
+        {
+          Subject_ID:subject_Detail.Subject_ID,
+          Subject_Name:subject_Detail.Subject_Name,
+          Subject_Des:subject_Detail.Subject_Des,
+          Subject_Year:subject_Detail.Subject_Student_Year,
+          Teacher_ID_Teacher:teacher_Data.Teacher_ID_Teacher,
+          Teacher_Name:teacher_Data.Teacher_Name,
+          Teacher_Sur_Name:teacher_Data.Teacher_Sur_Name,
+          Subject_Section_Num:subject.Registration_Section,
+          Teach_Date:teach_Data.Teach_Date,
+          Teach_Time:teach_Data.Teach_Time,
+          Exam_Date:teach_Data.Exam_Date,
+          Exam_Time:teach_Data.Exam_Time,
+          Registration_Paid:subject.Registration_Paid,
+          Registration_GPA:subject.Registration_GPA,
+          Subject_Checked:false
+        }
+      )
+    }
+    return result;
+  }
+  @Patch("/DropSubject")
+  async DropSubject(@Body() regisDto: any)
+  {
+    const result = [];
+    for(const Subject of regisDto.Data)
+    {
+      
+      const data = await this.RegistrationService.DropSubject(Subject.Student_ID_Student,Subject.Subject_ID,Subject.Registration_Year,Subject.Registration_Section,Subject.Registration_Semester);
+      if(data!==null)
+      {
+        result.push(data)
+      }
+    }
+    return result
+  }
+
 }
