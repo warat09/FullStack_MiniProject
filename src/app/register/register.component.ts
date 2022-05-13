@@ -20,12 +20,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.mydata = (JSON.parse(localStorage.getItem('userData') || '{}'))
-    this.mydata = (JSON.parse(localStorage.getItem('userData') || '{}'))
     this.http.get<any>(`http://localhost:9090/Main/AlreadyRegis/${this.mydata.User_ID_2}`).subscribe(
       res=>{
         if(!res.result)
         {
           this.http.get(`http://localhost:9090/Main/AvailableSubject/${this.mydata.User_ID_2}`,{
+            headers:{Authorization: `Bearer ${this.mydata.Token}`}
           }).subscribe(res=>{this.availableSubject = res;});
         }
       }

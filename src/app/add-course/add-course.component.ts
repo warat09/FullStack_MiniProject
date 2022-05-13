@@ -20,6 +20,7 @@ export class AddCourseComponent implements OnInit {
         if(res.result)
         {
           this.http.get(`http://localhost:9090/Main/AvailableSubject/${this.mydata.User_ID_2}`,{
+            headers:{Authorization: `Bearer ${this.mydata.Token}`}
           }).subscribe(res=>{this.availableSubject = res;});
         }
       }

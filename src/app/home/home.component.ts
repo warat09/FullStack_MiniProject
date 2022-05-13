@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.mydata = (JSON.parse(localStorage.getItem('userData') || '{}'));
-    console.log("test");
     if(Object.keys(this.mydata).length===0)
     {
       this.router.navigate([''])
