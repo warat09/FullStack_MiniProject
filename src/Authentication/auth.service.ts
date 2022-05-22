@@ -8,7 +8,7 @@ export class AuthService {
     constructor(
       private jwtService: JwtService
     ) {}
-    async login(payload: any) {
+    async GetToken(payload: any) {
       return this.jwtService.sign(payload);
     }
 }

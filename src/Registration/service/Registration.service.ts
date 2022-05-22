@@ -24,9 +24,13 @@ export class RegistrationService {
             return(Data);
         })
     }
+    // async getDropedSubject(student_ID:string,Year:number,Semester:string) : Promise<Registration[]>
+    // {
+    //     return this.RegistrationModel.find({Student_ID_Student:student_ID,Registration_Year:Year,Registration_Semester:Semester,Registration_GPA:"W"})
+    // }
     async getAlreadyRegistDataByID(student_ID:string): Promise<Registration[]>
     {
-        return this.RegistrationModel.find({Student_StuID:student_ID}).then(result=>{
+        return this.RegistrationModel.find({Student_ID_Student:student_ID}).then(result=>{
             const Data:Registration[] = [];
             result.forEach(res=>{
                 if(res.Registration_GPA==="")
@@ -37,17 +41,49 @@ export class RegistrationService {
             return Data;
         })
     }
-    async getAlreadyRegisByID(student_ID:string): Promise<Array<string>>
+    async getAlreadyRegisByID(student_ID:string,year:number,semester:string): Promise<Array<string>>
     {
-        return this.RegistrationModel.find({Student_StuID:student_ID}).then(result=>{
+        return this.RegistrationModel.find({Student_ID_Student:student_ID}).then(result=>{
             const Data:Array<string>=[];
             result.forEach(res=>{
-                if(res.Registration_GPA==="")
+                if(res.Registration_GPA===""||(res.Registration_GPA==="W" && res.Registration_Year===year && res.Registration_Semester === semester))
                 {
                     Data.push(res.Subject_ID);
                 }
             })
             return(Data);
         })
+    }
+    async getAlreadyRegisByID_Year_Semester(ID:string,Year:number,Semester:string)
+    {
+        return this.RegistrationModel.find({Student_ID_Student:ID,Registration_Year:Year,Registration_Semester:Semester,Registration_GPA:{$not:/^W/}});
+    }
+    async getAlreadyRegisByID_Year_Semester_withDroped(ID:string,Year:number,Semester:string)
+    {
+        return this.RegistrationModel.find({Student_ID_Student:ID,Registration_Year:Year,Registration_Semester:Semester});
+    }
+    async DropSubject(STD_ID:string,SUB_ID:string,Year:number,Section:string,Semester:string)
+    {
+        const Subject = await this.RegistrationModel.findOne({Student_ID_Student:STD_ID,Subject_ID:SUB_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
+        if(Subject!==null)
+        {
+            Subject.set({Registration_GPA:"W"})
+            await Subject.save()
+        }
+        return Subject
+    }
+    async UpdateGrade(STD_ID:string,SUB_ID:string,Year:number,Section:string,Semester:string,Grade:string)
+    {
+        const Subject = await this.RegistrationModel.findOne({Student_ID_Student:STD_ID,Subject_ID:SUB_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
+        if(Subject!==null)
+        {
+            Subject.set({Registration_GPA:Grade})
+            await Subject.save()
+        }
+        return Subject
+    }
+    async GetStudentData(Sub_ID:string,Year:number,Section:string,Semester:string)
+    {
+        return this.RegistrationModel.find({Subject_ID:Sub_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
     }
 }
