@@ -1,0 +1,62 @@
+<p>teach-open-subject works!</p>
+<form [formGroup]="Subject_form">
+  <div>
+    <label>Subject </label>
+    <select formControlName="Subject_ID" name="SubjectID">
+      <option *ngFor="let subject of Subject_list" [value]="subject.Subject_ID">
+        {{subject.Subject_ID+" "+subject.Subject_Name}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Student Section </label>
+    <select formControlName="Teach_Section" name="TeachSection">
+      <option *ngFor="let section of Section_Set" [value]="section">
+        {{section}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Student Section Num </label>
+    <select formControlName="Teach_Section_Num" name="TeachSectionNum">
+      <option *ngFor="let section_num of Section_Num_Set" [value]="section_num">
+        {{section_num}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Teach Date </label>
+    <select formControlName="Teach_Date" name="TeachTime">
+      <option *ngFor="let day of Date_Set" [value]="day">
+        {{day}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Teach Time </label>
+    <select formControlName="Teach_Time" name="TeachTime">
+      <option *ngFor="let Time of Time_Set" [value]="Time">
+        {{Time+" น."}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Exam Date </label>
+    <input  formControlName="Exam_Date" name="ExamDate" class="input">
+  </div>
+  <div>
+    <label>Exam Time </label>
+    <select formControlName="Exam_Time" name="ExamTime">
+      <option *ngFor="let Time of Time_Set" [value]="Time">
+        {{Time+" น."}}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label>Max Student </label>
+    <input  formControlName="Teach_Max_Student" name="TeachMaxStudent" class="input">
+  </div>
+  <div>
+    <button (click)="onAddTeach(Subject_form)">Add</button>
+  </div>
+</form>

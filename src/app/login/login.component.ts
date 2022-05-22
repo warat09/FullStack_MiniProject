@@ -69,7 +69,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/Home'])
         }
         else{
-          console.log("Teacher")
+          localStorage.setItem('userData',JSON.stringify(res))
+          localStorage.setItem('User_Name',f.get("User_Name")?.value);
+          console.log(localStorage.getItem('userData'))
+          this.router.navigate(['/Home'])
         }
 
       }

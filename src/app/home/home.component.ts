@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   mydata:any
   Username:any
-
+  public Type:any
   constructor(private http:HttpClient,private router: Router) {
   }
 
@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit {
       this.router.navigate([''])
     }
     this.Username = this.mydata.User_Name
-
-    // console.log(this.mydata)
+    this.Type = this.mydata.Type
   }
   onLogout():void
   {

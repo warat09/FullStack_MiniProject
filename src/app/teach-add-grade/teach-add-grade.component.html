@@ -1,0 +1,34 @@
+<p>teach-add-grade works!</p>
+<div>
+  <label>YEAR</label>
+  <select [(ngModel)]="Watch_Year">
+    <option *ngFor="let sublist of Watch_Year_list" [value]="sublist">
+      {{sublist}}
+    </option>
+  </select>
+  <label>Semester</label>
+  <select [(ngModel)]="Watch_Semester">
+    <option *ngFor="let sublist of Watch_Semester_list" [value]="sublist">
+      {{sublist}}
+    </option>
+  </select>
+</div>
+<div>
+  <button (click)="onSubmitYear()">Watch Data</button>
+</div>
+<div *ngIf="this.result.length!==0">
+  <div *ngFor="let item of result">
+    <label>{{item.Subject_ID+" "+item.Subject_Name+" "+item.Teach_Section_Num}}</label>
+    <div *ngFor="let student of item.Student_Data">
+        <label>{{student.Student_Name}}</label>
+        <select [(ngModel)]="student.Registration_GPA">
+          <option *ngFor="let sublist of Grade_list" [value]="sublist">
+            {{sublist}}
+          </option>
+        </select>
+    </div>
+  </div>
+  <div>
+    <button (click)="onSubmitUpdateData()">UpDate Data</button>
+  </div>
+</div>

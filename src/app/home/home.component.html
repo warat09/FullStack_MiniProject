@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="Type === 'Student'">
     <nav>
         <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
         <li><a routerLink="addCourse">เพิ่มวิชาเรียน</a></li>
@@ -10,7 +10,17 @@
       </nav>
       <p>{{Username}}</p>
       <button (click)="onLogout()">Logout</button>
-     <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>
-
+<div *ngIf="Type === 'Teacher'">
+  <nav>
+    <li><a routerLink="AddTeachSubject">เปิดวิชาเรียน</a></li>
+    <li><a routerLink="WatchTeachSubjectData">ดูข้อมูลวิชาที่สอน</a></li>
+    <li><a routerLink="AddGradeSubject">ให้ผลการเรียน</a></li>
+    <li><a routerLink="WatchSchedule">ตารางสอน</a></li>
+  </nav>
+  <p>{{Username}}</p>
+    <button (click)="onLogout()">Logout</button>
+  <router-outlet></router-outlet>
+</div>
 
