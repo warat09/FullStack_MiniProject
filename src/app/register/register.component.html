@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <body>
-            <table>
-                <tr>
-                  <th>Company</th>
-                  <th>Contact</th>
-                  <th>Country</th>
-                </tr>
-                <tr *ngFor="let n of food">
-                    <th>
-                        <input type="checkbox" [value]="n.id" [checked]="n.select" (change)="onChangeClick($event)"/>
-                    </th>
-                  <td>{{n.name}}</td>
-                </tr>
-                <tr>
-                  <td>Centro comercial Moctezuma</td>
-                  <td>Francisco Chang</td>
-                  <td>Mexico</td>
-                </tr>
-              </table>
-
-    </body>
-</html>
-
+<div *ngIf="!availableSubject">
+  <label>ลงทะเบียนเรียนไปเเล้ว</label>
+</div>
+<div *ngIf="availableSubject">
+  <div>
+    <div *ngFor="let list of availableSubject.Result">
+      <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked">
+      {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section +" Date "+list.Subject_Date+" Time "+list.Subject_Time}}
+      <select [(ngModel)]="list.Subject_Section" (ngModelChange)="onsectionChange($event,list.Subject_ID)">
+        <option *ngFor="let sublist of list.Subject_SectionList" [value]="sublist">
+          {{sublist}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <button (click)="onSubmitRegistrationArray()">Register</button>
+    </div>
+  </div>
+</div>

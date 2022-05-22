@@ -1,3 +1,4 @@
+import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,26 +16,31 @@ import { LoginComponent } from './login/login.component';
 import { HomeRoutingModule } from './home/home-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TeachOpenSubjectComponent } from './teach-open-subject/teach-open-subject.component';
+import { TeachWatchSubjectDataComponent } from './teach-watch-subject-data/teach-watch-subject-data.component';
+import { TeachScheduleComponent } from './teach-schedule/teach-schedule.component';
+import { TeachAddGradeComponent } from './teach-add-grade/teach-add-grade.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    AddCourseComponent,
-    ChangesectionComponent,
-    DropCourseComponent,
-    CheckRegisterComponent,
-    GradeComponent,
-    ScheduleComponent,
+    // RegisterComponent,
+    // AddCourseComponent,
+    // ChangesectionComponent,
+    // DropCourseComponent,
+    // CheckRegisterComponent,
+    // GradeComponent,
+    // ScheduleComponent,
     HomeComponent,
     LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeRoutingModule,
+    // HomeRoutingModule,
     HttpClientModule,
     FormsModule,
+    HomeModule,
     ReactiveFormsModule,
   ],
   providers: [],

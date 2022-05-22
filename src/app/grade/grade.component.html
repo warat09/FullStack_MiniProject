@@ -1,1 +1,17 @@
-<p>grade works!</p>
+<div>
+  <label>YEAR</label>
+  <select [(ngModel)]="Watch_Year">
+    <option *ngFor="let sublist of Watch_Year_list" [value]="sublist">
+      {{sublist}}
+    </option>
+  </select>
+  <label>Semester</label>
+  <select [(ngModel)]="Watch_Semester">
+    <option *ngFor="let sublist of Watch_Semester_list" [value]="sublist">
+      {{sublist}}
+    </option>
+  </select>
+</div>
+<div>
+  <button (click)="onSubmitYear()">Watch schedule</button>
+</div>

@@ -1,1 +1,8 @@
 <p>drop-course works!</p>
+<div *ngFor="let list of currentSubject">
+  <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked">
+  {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section_Num}}
+</div>
+<div>
+  <button (click)="onSubmitDrop()">Drop</button>
+</div>
