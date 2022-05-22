@@ -78,10 +78,10 @@ export class MainController {
           // return {message:"Login success!!",Token:this.jwtService.sign(payload)};
           console.log("Teachers")
           return {
-            Type:"Teachers",
+            Type:"Teacher",
             message:"Login success!!",
             Token:await this.AuthService.GetToken(payload),
-            User_Email:resultTEACH.Teacher_Name
+            User_ID:resultTEACH.Teacher_ID_Teacher,
           };
         }
         else
@@ -331,11 +331,6 @@ export class MainController {
     }
     return this.TeachService.createTeach(newOpenSubject);
   }
-  @Get("/Teach")
-  async GetTeach()
-  {
-    return this.TeachService.getTeach();
-  }
   @Patch("/UpdateYear")
   async UpdateYear(@Req() req:Request)
   {
@@ -420,5 +415,95 @@ export class MainController {
     }
     return result
   }
+  @Get("/Get_Teach_Subject")
+  async getSubject(@Param() params)
+  {
+    return this.SubjectService.findAll();
+  }
+  @Post("/AddTeach")
+  async AddTeach(@Body() Data:any)
+  {
+    const Already_Regis = await this.TeachService.getTeachBySubject_Year_Semester_SecNum(Data.Subject_ID,this.currentYear.getFullYear()+543,this.currentSemester,Data.Teach_Section_Num)
+    if(Already_Regis!==null)
+    {
+      return {message:"Already Added!!!"}
+    }
+    const AllreadyTeach_time = await this.TeachService.getTeachByTeach_Date_Time(Data.Teach_Date,Data.Teach_Time,this.currentYear.getFullYear()+543,this.currentSemester);
+    if(AllreadyTeach_time !== null)
+    {
+      return {message:"TeachDate Added!!"}
+    }
+    return this.TeachService.createTeach({
+      Subject_ID:Data.Subject_ID,
+      Teach_ID:Data.Teach_ID,
+      Teach_Year:this.currentYear.getFullYear()+543,
+      Teach_Semester:this.currentSemester,
+      Teach_Section:Data.Teach_Section,
+      Teach_Section_Num:Data.Teach_Section_Num,
+      Teach_Date:Data.Teach_Date,
+      Teach_Time:Data.Teach_Time,
+      Exam_Date:Data.Exam_Date,
+      Exam_Time:Data.Exam_Time,
+      Teach_Current_Student:0,
+      Teach_Max_Student:Data.Teach_Max_Student
+    })
+  }
 
+
+
+
+  @Get("/Get_Teach/:id/:year/:semester")
+  async GetTeach(@Param() params)
+  {
+    const result = [];
+    const Subject = await this.TeachService.getTeachByYear_Semester(params.id,params.year,params.semester);
+    for(const subject of Subject)
+    {
+      result.push({
+        Subject_ID: subject.Subject_ID,
+        Subject_Name:await this.SubjectService.getSubjecName(subject.Subject_ID),
+        Teach_ID: subject.Teach_ID,
+        Teach_Year: subject.Teach_Year,
+        Teach_Semester: subject.Teach_Semester,
+        Teach_Section: subject.Teach_Section,
+        Teach_Section_Num: subject.Teach_Section_Num,
+        Teach_Date: subject.Teach_Date,
+        Teach_Time: subject.Teach_Time,
+        Exam_Date: subject.Exam_Date,
+        Exam_Time: subject.Exam_Time,
+        Teach_Max_Student: subject.Teach_Max_Student,
+        Teach_Current_Student: subject.Teach_Current_Student,
+        Student_Data:await this.getStudent_Data(subject.Subject_ID,params.year,subject.Teach_Section_Num,params.semester)
+      })
+    }
+    return result;
+  }
+  async getStudent_Data(Sub_ID:string,Year:number,Section:string,Semester:string)
+  {
+    const result = [];
+    const Student_Regis_Data = await this.RegistrationService.GetStudentData(Sub_ID,Year,Section,Semester);
+    for(const Data of Student_Regis_Data)
+    {
+      const Student_Data = await this.StudentService.getStudentData(Data.Student_ID_Student);
+      result.push({
+        Student_ID_Student: Data.Student_ID_Student,
+        Registration_Paid: Data.Registration_Paid,
+        Registration_GPA: Data.Registration_GPA,
+        Student_Name:Student_Data.Student_Name+" "+Student_Data.Student_Sur_Name
+      })
+    }
+    return result
+  }
+  @Patch("/UpdateGrade")
+  async UpdateGrade(@Body() Data:any)
+  {
+    for(const data of Data)
+    {
+      for(const RegisData of data.Student_Data)
+      {
+        await this.RegistrationService.UpdateGrade(RegisData.Student_ID_Student,data.Subject_ID,data.Teach_Year,data.Teach_Section_Num,data.Teach_Semester,RegisData.Registration_GPA)
+      }
+    }
+    return {message:"PASS!!!!"};
+  }
 }

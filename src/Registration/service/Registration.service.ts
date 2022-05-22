@@ -72,4 +72,18 @@ export class RegistrationService {
         }
         return Subject
     }
+    async UpdateGrade(STD_ID:string,SUB_ID:string,Year:number,Section:string,Semester:string,Grade:string)
+    {
+        const Subject = await this.RegistrationModel.findOne({Student_ID_Student:STD_ID,Subject_ID:SUB_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
+        if(Subject!==null)
+        {
+            Subject.set({Registration_GPA:Grade})
+            await Subject.save()
+        }
+        return Subject
+    }
+    async GetStudentData(Sub_ID:string,Year:number,Section:string,Semester:string)
+    {
+        return this.RegistrationModel.find({Subject_ID:Sub_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
+    }
 }
