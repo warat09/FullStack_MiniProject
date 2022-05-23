@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./check-register.component.css']
 })
 export class CheckRegisterComponent implements OnInit {
+  result:any;
   mydata:any;
   Watch_Year:string;
   Watch_Year_list:Array<string>;
@@ -18,6 +19,7 @@ export class CheckRegisterComponent implements OnInit {
     this.Watch_Year_list = []
     this.Watch_Semester_list = ["1","2"];
     this.Watch_Semester = "1"
+    this.result =[];
     for(let i:number = currentYear as unknown as number ;i>=this.mydata.User_Year;i--)
     {
       this.Watch_Year_list.push(i.toString());
@@ -31,6 +33,6 @@ export class CheckRegisterComponent implements OnInit {
 
   onSubmitYear():void{
     this.http.get<any>(`http://localhost:9090/Main/GetRegistrationResult/${this.mydata.User_ID_2}/${this.Watch_Year}/${this.Watch_Semester}`).subscribe(
-      res=>{console.log(res)})
+      res=>{this.result=res,console.log(res)})
   }
 }

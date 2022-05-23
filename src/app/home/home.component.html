@@ -14,7 +14,6 @@
         <li><a routerLink="schedule">ตารางสอน/สอบ</a></li>
       <button class = "Logout"(click)="onLogout()">Logout</button>
       </nav>
-    <router-outlet></router-outlet>
 </div>
 <div *ngIf="Type === 'Teacher'">
   <nav>
@@ -24,10 +23,9 @@
     <li><a routerLink="WatchSchedule">ตารางสอน</a></li>
   </nav>
   <p>{{Username}}</p>
-    <button (click)="onLogout()">Logout</button>
-  <router-outlet></router-outlet>
+  <button (click)="onLogout()">Logout</button>
 </div>
-<div class="broadcast">
+<div class="broadcast" *ngIf="router.url === '/Home'">
 <h2>กรุณาเลือกการทำงาน จากเมนูซ้ายบน</h2>
 <ul>
   <li><b>การลงทะเบียน</b> ประกอบไปด้วยเมนูสำหรับลงทะเบียนในภาคการเรียนการศึกษาปัจจุบัน</li>
@@ -44,5 +42,8 @@
       <li><b>ตารางสอน</b> สำหรับตรวจสอบวันเวลาเรียน/สอบของวิชาที่ลงทะเบียนในภาคการศึกษาปัจจุบัน</li>
     </ul>
   </ul>
+</div>
+<div class="broadcast" *ngIf="router.url !== '/Home'">
+  <router-outlet></router-outlet>
 </div>
 </body>

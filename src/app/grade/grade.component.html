@@ -11,7 +11,24 @@
       {{sublist}}
     </option>
   </select>
-</div>
-<div>
   <button (click)="onSubmitYear()">Watch schedule</button>
+</div>
+<div *ngIf="result.length===0">
+  <label>ไม่มีข้อมูล</label>
+</div>
+<div *ngIf="result.length!==0">
+<table>
+  <tr>
+    <th>Subject ID</th>
+    <th>Subject Name</th>
+    <th>Subject Section</th>
+    <th>Registration_GPA</th>
+  </tr>
+  <tr *ngFor="let item of result">
+    <td>{{item.Subject_ID}}</td>
+    <td>{{item.Subject_Name}}</td>
+    <td>{{item.Subject_Section_Num}}</td>
+    <td>{{item.Registration_GPA}}</td>
+  </tr>
+</table>
 </div>
