@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   mydata:any
   Username:any
   public Type:any
-  constructor(private http:HttpClient,private router: Router) {
+  constructor(private http:HttpClient,public router: Router) {
   }
 
   ngOnInit(): void {
@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
     }
     this.Username = this.mydata.User_Name
     this.Type = this.mydata.Type
+    console.log(this.router.url)
   }
   onLogout():void
   {

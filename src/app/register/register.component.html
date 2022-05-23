@@ -1,10 +1,10 @@
 <body>
-<div *ngIf="!availableSubject">
+<div *ngIf="!availableSubject" [ngStyle]="{color: 'black'}">
   <label>ลงทะเบียนเรียนไปเเล้ว</label>
 </div>
 <div *ngIf="availableSubject">
   <div>
-    <div *ngFor="let list of availableSubject.Result">
+    <div *ngFor="let list of availableSubject.Result" [ngStyle]="{color:'black',background:'white'}">
       <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked">
       {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section +" Date "+list.Subject_Date+" Time "+list.Subject_Time}}
       <select [(ngModel)]="list.Subject_Section" (ngModelChange)="onsectionChange($event,list.Subject_ID)">

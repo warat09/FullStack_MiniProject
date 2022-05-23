@@ -36,7 +36,7 @@ export class TeachOpenSubjectComponent implements OnInit {
         Subject_ID:[""],
         Teach_Section:["DA"],
         Teach_Section_Num:["1"],
-        Teach_Max_Student:[0],
+        Teach_Max_Student:[10],
       }
     )
     this.http.get<any>(`http://localhost:9090/Main/Get_Teach_Subject`).subscribe(

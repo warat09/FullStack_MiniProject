@@ -32,6 +32,6 @@ export class TeachWatchSubjectDataComponent implements OnInit {
 
   onSubmitYear():void{
     this.http.get<any>(`http://localhost:9090/Main/Get_Teach/${this.mydata.User_ID}/${this.Watch_Year}/${this.Watch_Semester}`).subscribe(
-      res=>{console.log(res)})
+      res=>{this.result=res,console.log(res)})
   }
 }

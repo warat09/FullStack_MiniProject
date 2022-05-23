@@ -16,7 +16,7 @@
 <div>
   <button (click)="onSubmitYear()">Watch Data</button>
 </div>
-<div *ngIf="this.result.length!==0">
+<!-- <div *ngIf="this.result.length!==0">
   <div *ngFor="let item of result">
     <label>{{item.Subject_ID+" "+item.Subject_Name+" "+item.Teach_Section_Num}}</label>
     <div *ngFor="let student of item.Student_Data">
@@ -31,4 +31,44 @@
   <div>
     <button (click)="onSubmitUpdateData()">UpDate Data</button>
   </div>
+</div> -->
+<div *ngIf="result.length===0">
+  <label>ไม่มีข้อมูล</label>
+</div>
+<div *ngIf="result.length!==0">
+<table>
+  <tr>
+    <th>Subject ID</th>
+    <th>Subject Name</th>
+    <th>Subject Teach Date</th>
+    <th>Subject Teach Time</th>
+  </tr>
+  <tr *ngFor="let item of result">
+    <td>{{item.Subject_ID}}</td>
+    <td>{{item.Subject_Name}}</td>
+    <td>{{item.Teach_Date}}</td>
+    <td>{{item.Teach_Time}}</td>
+    <table>
+      <tr>
+        <th>Student_ID</th>
+        <th>Student_Name</th>
+        <th>Student_Grade</th>
+      </tr>
+      <tr *ngFor="let Subitem of item.Student_Data">
+        <td>{{Subitem.Student_ID_Student}}</td>
+        <td>{{Subitem.Student_Name}}</td>
+        <td>
+          <select [(ngModel)]="Subitem.Registration_GPA">
+            <option *ngFor="let sublist of Grade_list" [value]="sublist">
+              {{sublist}}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </tr>
+</table>
+<div>
+  <button (click)="onSubmitUpdateData()">UpDate Data</button>
+</div>
 </div>
