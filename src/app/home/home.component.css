@@ -1,8 +1,8 @@
 
 body{
-  background: url("../../KMUTBbackground.jpg") no-repeat;
-background-size: cover;
-  /* background-color: #000; */
+  background: url("../../KMUTBbackground.jpg") no-repeat fixed;
+  background-size: cover;
+  margin: 0;
 }
 
  .sidebar{

@@ -2,15 +2,34 @@
   <label>ยังไม่ได้ลงทะเบียนเรียน</label>
 </div>
 <div *ngIf="availableSubject">
-  <div *ngFor="let list of availableSubject.Result">
-    <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked">
-    {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section +" Date "+list.Subject_Date+" Time "+list.Subject_Time}}
-    <select [(ngModel)]="list.Subject_Section" (ngModelChange)="onsectionChange($event,list.Subject_ID)">
-      <option *ngFor="let sublist of list.Subject_SectionList" [value]="sublist">
-        {{sublist}}
-      </option>
-    </select>
-  </div>
+  <table>
+    <tr>
+      <th></th>
+      <th>Subject ID</th>
+      <th>Subject Name</th>
+      <th>Section</th>
+    </tr>
+    <tr *ngFor="let list of availableSubject.Result">
+      <td><input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked"></td>
+      <td>{{list.Subject_ID}}</td>
+      <td>{{list.Subject_Name}}</td>
+      <td class="selecttd">    
+        <!-- <select [(ngModel)]="list.Subject_Section" (ngModelChange)="onsectionChange($event,list.Subject_ID)">
+        <option *ngFor="let sublist of list.Subject_SectionList" [value]="sublist">
+          {{sublist}}
+        </option>
+      </select> -->
+        <div class="select">
+          <select [(ngModel)]="list.Subject_Section" (ngModelChange)="onsectionChange($event,list.Subject_ID)">
+            <option *ngFor="let sublist of list.Subject_SectionList" [value]="sublist">
+              {{sublist}}
+            </option>
+          </select>
+        </div>
+      
+    </td>
+    </tr>
+  </table>
   <div>
     <button (click)="onSubmitAddRegistration()">Add Subject</button>
   </div>
