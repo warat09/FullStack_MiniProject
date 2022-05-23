@@ -1,4 +1,5 @@
 <body>
+<<<<<<< HEAD
   <div class="banner">
   <h1>ลงทะเบียน KMUTNB</h1>
   </div>
@@ -46,3 +47,52 @@
     </ul>
   </div>
   </body>
+=======
+<div class="banner">
+<h1>ลงทะเบียน KMUTNB</h1>
+</div>
+  <div class ="nav-std"*ngIf="Type === 'Student'">
+    <nav class="sidebar">
+      <p>คุณ {{Username}}</p>
+      <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
+        <li><a routerLink="addCourse">เพิ่มวิชาเรียน</a></li>
+        <li><a routerLink="changeSection">เปลี่ยนตอนเรียน</a></li>
+        <li><a routerLink="dropCourse">ถอนวิชาเรียน</a></li>
+        <li><a routerLink="checkRegister">ผลลงทะเบียน</a></li>
+        <li><a routerLink="grade">ผลการเรียน</a></li>
+        <li><a routerLink="schedule">ตารางสอน/สอบ</a></li>
+      <button class = "Logout"(click)="onLogout()">Logout</button>
+      </nav>
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="Type === 'Teacher'">
+  <nav>
+    <li><a routerLink="AddTeachSubject">เปิดวิชาเรียน</a></li>
+    <li><a routerLink="WatchTeachSubjectData">ดูข้อมูลวิชาที่สอน</a></li>
+    <li><a routerLink="AddGradeSubject">ให้ผลการเรียน</a></li>
+    <li><a routerLink="WatchSchedule">ตารางสอน</a></li>
+  </nav>
+  <p>{{Username}}</p>
+    <button (click)="onLogout()">Logout</button>
+  <router-outlet></router-outlet>
+</div>
+<div class="broadcast">
+<h2>กรุณาเลือกการทำงาน จากเมนูซ้ายบน</h2>
+<ul>
+  <li><b>การลงทะเบียน</b> ประกอบไปด้วยเมนูสำหรับลงทะเบียนในภาคการเรียนการศึกษาปัจจุบัน</li>
+  <ul>
+  <li><b>ลงทะเบียน</b> สำหรับทำการลงทะเบียน</li>
+  <li><b>เพิ่มวิชาเรียน</b></li>
+    <li><b>เปลี่ยนตอนเรียน</b> สำหรับทำการลงทะเบียนเปลี่ยนวิชาตอนเรียน</li>
+    <li><b>ถอนวิชาเรียน</b> สำหรับทำการลงทะเบียนไว้</li>
+  </ul>
+    <li><b>สอบถามข้อมูล</b></li>
+    <ul>
+      <li><b>ผลลงทะเบียน</b> สำหรับตรวจสอบผลการลงทะเบียนในภาคการศึกษาที่ผ่านมาและปัจจุบัน</li>
+      <li><b>ผลการเรียน</b> สำหรับตรวจสอบผลการเรียนในภาคการศึกษาที่ผ่านมาและปัจจุบัน</li>
+      <li><b>ตารางสอน</b> สำหรับตรวจสอบวันเวลาเรียน/สอบของวิชาที่ลงทะเบียนในภาคการศึกษาปัจจุบัน</li>
+    </ul>
+  </ul>
+</div>
+</body>
+>>>>>>> 890adca20a38aed140d881bd8419d03fa42e8adb

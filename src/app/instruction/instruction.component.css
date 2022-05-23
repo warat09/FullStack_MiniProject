@@ -1,0 +1,22 @@
+.broadcast{
+  display: block;
+  border: 2px solid hsl(27, 100%, 48%);
+  border-radius: 5px;
+  height: 500px;
+  width: 800px;
+  margin-left: 500px;
+  background:hsl(27, 100%, 48%) ;
+  color: #FFFFFF;
+}
+
+.broadcast h2{
+  text-align: center;
+}
+
+.broadcast ul{
+  margin-top: 20px;
+}
+
+.broadcast li{
+  margin-top: 16px;
+}

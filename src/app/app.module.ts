@@ -20,6 +20,7 @@ import { TeachOpenSubjectComponent } from './teach-open-subject/teach-open-subje
 import { TeachWatchSubjectDataComponent } from './teach-watch-subject-data/teach-watch-subject-data.component';
 import { TeachScheduleComponent } from './teach-schedule/teach-schedule.component';
 import { TeachAddGradeComponent } from './teach-add-grade/teach-add-grade.component';
+import { InstructionComponent } from './instruction/instruction.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TeachAddGradeComponent } from './teach-add-grade/teach-add-grade.compon
     // ScheduleComponent,
     HomeComponent,
     LoginComponent,
+    InstructionComponent,
   ],
   imports: [
     BrowserModule,

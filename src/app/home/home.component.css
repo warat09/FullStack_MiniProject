@@ -1,5 +1,6 @@
 
 body{
+<<<<<<< HEAD
     background: url("../../KMUTBbackground.jpg") no-repeat;
   background-size: cover;
     /* background-color: #000; */
@@ -110,3 +111,115 @@ body{
   .broadcast li{
     margin-top: 16px;
   }
+=======
+  background: url("../../KMUTBbackground.jpg") no-repeat;
+background-size: cover;
+  /* background-color: #000; */
+}
+
+ .sidebar{
+  position: fixed;
+  width: 160px;
+  height: 540px;
+  background: hsl(27, 100%, 48%);
+  padding: 30px;
+  border-radius:2%;
+  z-index: 1;
+  left: 1%;
+  text-decoration: none;
+
+}
+ p{
+  font-size: 20px;
+}
+.nav-std{
+  margin-top: 4%;
+}
+a:link{
+  text-decoration: none;
+}
+.sidebar li{
+  padding: 20px;
+  border-bottom: 1px solid;
+
+}
+
+.sidebar li {
+  color: black;
+  display: block;
+}
+
+.sidebar li:hover{
+  background: #FFFFFF;
+}
+
+.Logout{
+  margin-top: 20px;
+}
+
+.Logout ,.Logout::after {
+  background: hsl(27, 100%, 48%);
+  border: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.Logout:hover,
+.Logout:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+.Logout:active {
+  opacity: .5;
+}
+
+.banner {
+  padding: 5px;
+  text-align: center;
+  background:hsl(27, 100%, 48%);
+  color: white;
+  font-size: 20px;
+}
+
+.broadcast{
+  display: block;
+  border: 2px solid hsl(27, 100%, 48%);
+  border-radius: 5px;
+  height: 500px;
+  width: 800px;
+  margin-left: 500px;
+  background:hsl(27, 100%, 48%) ;
+  color: #FFFFFF;
+}
+
+.broadcast h2{
+  text-align: center;
+}
+
+.broadcast ul{
+  margin-top: 20px;
+}
+
+.broadcast li{
+  margin-top: 16px;
+}
+>>>>>>> 890adca20a38aed140d881bd8419d03fa42e8adb
