@@ -8,6 +8,7 @@ body {
 	color: #666;
 }
 
+
 h1#title {
 	font-family: 'Roboto Slab', serif;
 	font-weight: 300;
@@ -152,16 +153,6 @@ p.small {
   -webkit-animation-duration: 1s;
   -webkit-animation-delay: 1s;
 }
-
-@charset "UTF-8";
-
-/*!
-Animate.css - http://daneden.me/animate
-Version - 3.4.0
-Licensed under the MIT license - http://opensource.org/licenses/MIT
-
-Copyright (c) 2015 Daniel Eden
-*/
 
 .animated {
   -webkit-animation-duration: 1s;
