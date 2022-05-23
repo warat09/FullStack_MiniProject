@@ -12,7 +12,7 @@ export class RegistrationService {
         return Registration.save();
     }
     async getPassSubjectByID(student_ID:string): Promise<Array<string>>{
-        return this.RegistrationModel.find({Student_StuID:student_ID}).then(result=>{
+        return this.RegistrationModel.find({Student_ID_Student:student_ID}).then(result=>{
             const Data:Array<string>=[];
             result.forEach(res=>{
                 const regex = new RegExp("^[A,B,C,D]$");

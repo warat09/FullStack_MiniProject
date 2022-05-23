@@ -69,7 +69,6 @@ export class MainController {
         {
           return {message:"invalid Password"}
         }
-        break;
       }
       case "Teacher":{
         if(await bcrypt.compare(Password,resultTEACH.Teacher_Password))
