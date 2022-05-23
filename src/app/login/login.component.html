@@ -1,5 +1,35 @@
-<form [formGroup]="login_form">
-    <input  formControlName="User_Name" name="OrderName" class="input">
-    <input  formControlName="User_Password" name="OrderName" class="input">
-    <button (click)="onSubmitLogin(login_form)">login</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class="container">
+		<div class="top">
+			<h1 id="title" class="hidden animated zoomIn"><span id="logo">KMUT <span style="color: green;">NB</span></span></h1>
+		</div>
+		<div class="login-box animated flipInX">
+			<div class="box-header">
+				<h2>Log In</h2>
+			</div>
+			<form [formGroup]="login_form">
+                <label for="username">Username</label>
+			    <br/>
+                <input  formControlName="User_Name" name="OrderName" class="input">
+                <br/>
+                <label for="username">Password</label>
+			    <br/>
+                <input type="password" formControlName="User_Password" name="OrderName" class="input">
+                <br/>
+                <button (click)="onSubmitLogin(login_form)">login</button>
+            </form>
+		</div>
+	</div>
+</body>
+
+</html>
