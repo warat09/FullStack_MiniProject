@@ -1,0 +1,244 @@
+p{
+  text-align: center;
+}
+
+.form-open{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 20px;
+  padding-left: 600px;
+  padding-top: 20px;
+  font-size: 18px;
+}
+
+.subj label{
+padding-right: 16px;
+}
+
+.section label{
+padding-right: 20px;
+}
+
+.section_n label{
+padding-right: 8px;
+}
+
+.Teach_Time label{
+  padding-right: 10px;
+}
+.Teach_Date label{
+padding-right: 12px;
+}
+
+.Exam_Date input{
+  width: 120px;
+}
+
+.Student_n input{
+  width: 20px;
+}
+
+.Exam_Time label{
+  padding-right: 10px;
+}
+
+.Add {
+  padding-top: 4%;
+  text-align: center;
+}
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-image: none;
+  cursor: pointer;
+  background-color: #2c3e50;
+
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.subj {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 12em;
+  height: 2em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.subj::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.subj:hover::after {
+  color: #f39c12;
+}
+
+.section {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 9em;
+  height: 2em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.section::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.section:hover::after {
+  color: #f39c12;
+}
+
+.section_n {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 9em;
+  height: 2em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.section_n::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.section_n:hover::after {
+  color: #f39c12;
+}
+
+.Teach_Date {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 9em;
+  height: 2em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.Teach_Date::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.Teach_Date:hover::after {
+  color: #f39c12;
+}
+
+.Teach_Time {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 14em;
+  height: 2em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.Teach_Time::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.Teach_Time:hover::after {
+  color: #f39c12;
+}
+
+.Exam_Time {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 13em;
+  height: 2em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.Exam_Time::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.6em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.Exam_Time:hover::after {
+  color: #f39c12;
+}
+
+.Exam_Date input{
+  background-color: black;
+  color: white;
+}
+.Student_n input{
+  background-color: black;
+  color: white;
+}
+
+.Add button{
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-image: none;
+  cursor: pointer;
+  background-color: #2c3e50;
+  width: 10em;
+  height: 3em;
+}

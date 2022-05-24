@@ -1,10 +1,10 @@
-<p>drop-course works!</p>
+<!-- <p>drop-course works!</p> -->
 <table>
   <tr>
     <th></th>
-    <th>Subject ID</th>
-    <th>Subject Name</th>
-    <th>Section</th>
+    <th>รหัสวิชา</th>
+    <th>ชื่อวิชา</th>
+    <th>ตอนเรียน</th>
   </tr>
   <tr *ngFor="let list of currentSubject">
     <td><input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked"></td>
@@ -13,6 +13,6 @@
     <td>{{list.Subject_Section_Num}}</td>
   </tr>
 </table>
-<div>
-  <button (click)="onSubmitDrop()">Drop</button>
+<div class="drop_btn">
+  <button (click)="onSubmitDrop()">ดรอป</button>
 </div>
