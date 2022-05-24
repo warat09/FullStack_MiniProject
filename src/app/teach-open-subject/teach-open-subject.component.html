@@ -1,62 +1,64 @@
-<p>teach-open-subject works!</p>
+<p>เปิดวิชาเรียน</p>
 <form [formGroup]="Subject_form">
-  <div>
-    <label>Subject </label>
+  <div class="form-open">
+  <div class="subj">
+    <label>วิชา </label>
     <select formControlName="Subject_ID" name="SubjectID">
       <option *ngFor="let subject of Subject_list" [value]="subject.Subject_ID">
         {{subject.Subject_ID+" "+subject.Subject_Name}}
       </option>
     </select>
   </div>
-  <div>
-    <label>Student Section </label>
+  <div class="section">
+    <label>ตอนเรียน</label>
     <select formControlName="Teach_Section" name="TeachSection">
       <option *ngFor="let section of Section_Set" [value]="section">
         {{section}}
       </option>
     </select>
   </div>
-  <div>
-    <label>Student Section Num </label>
+  <div class="section_n">
+    <label>ตอนเรียนที่</label>
     <select formControlName="Teach_Section_Num" name="TeachSectionNum">
       <option *ngFor="let section_num of Section_Num_Set" [value]="section_num">
         {{section_num}}
       </option>
     </select>
   </div>
-  <div>
-    <label>Teach Date </label>
+  <div class="Teach_Date">
+    <label>วันที่สอน </label>
     <select formControlName="Teach_Date" name="TeachTime">
       <option *ngFor="let day of Date_Set" [value]="day">
         {{day}}
       </option>
     </select>
   </div>
-  <div>
-    <label>Teach Time </label>
+  <div class="Teach_Time">
+    <label>เวลาที่สอน </label>
     <select formControlName="Teach_Time" name="TeachTime">
       <option *ngFor="let Time of Time_Set" [value]="Time">
         {{Time+" น."}}
       </option>
     </select>
   </div>
-  <div>
-    <label>Exam Date </label>
+  <div class="Exam_Date">
+    <label>วันที่สอบ </label>
     <input  formControlName="Exam_Date" name="ExamDate" class="input">
   </div>
-  <div>
-    <label>Exam Time </label>
+  <div class="Exam_Time">
+    <label>เวลาสอบ </label>
     <select formControlName="Exam_Time" name="ExamTime">
       <option *ngFor="let Time of Time_Set" [value]="Time">
         {{Time+" น."}}
       </option>
     </select>
   </div>
-  <div>
-    <label>Max Student </label>
+  <div class="Student_n">
+    <label>จำนวนนักเรียน </label>
     <input  formControlName="Teach_Max_Student" name="TeachMaxStudent" class="input">
   </div>
-  <div>
-    <button (click)="onAddTeach(Subject_form)">Add</button>
-  </div>
+</div>
+<div class="Add">
+  <button (click)="onAddTeach(Subject_form)">Add</button>
+</div>
 </form>

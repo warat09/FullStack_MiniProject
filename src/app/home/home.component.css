@@ -1,20 +1,25 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
 body{
   background: url("../../KMUTBbackground.jpg") no-repeat fixed;
   background-size: cover;
   margin: 0;
 }
-
+*{
+  font-family: 'Sarabun', sans-serif;
+  font-family: 'Source Code Pro', monospace;
+}
  .sidebar{
   position: fixed;
-  width: 160px;
-  height: 540px;
+  width: 180px;
+  height: 580px;
   background: hsl(27, 100%, 48%);
   padding: 30px;
-  border-radius:2%;
+  border-radius:3.5%;
   z-index: 1;
   left: 1%;
   text-decoration: none;
+  font-size: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
 }
  p{
@@ -38,7 +43,7 @@ a:link{
 }
 
 .sidebar li:hover{
-  background: #FFFFFF;
+  background:#DD4C48;
 }
 
 .Logout{
@@ -91,22 +96,58 @@ a:link{
 .broadcast{
   display: block;
   border: 2px solid hsl(27, 100%, 48%);
-  border-radius: 5px;
-  height: 500px;
-  width: 800px;
+  border-radius: 10px;
+  height: auto;
+  width: 1400px;
   margin-left: 500px;
   background:hsl(27, 100%, 48%) ;
   color: #FFFFFF;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+.broadcast{
+  margin-top: 4%;
+}
 .broadcast h2{
   text-align: center;
 }
 
 .broadcast ul{
   margin-top: 20px;
+  font-size: 16px;
 }
 
 .broadcast li{
   margin-top: 16px;
+  font-size: 20px;
 }
+
+.sidebar_TC{
+  position: fixed;
+  width: 200px;
+  height: 400px;
+  background: hsl(27, 100%, 48%);
+  padding: 30px;
+  border-radius:3.5%;
+  z-index: 1;
+  left: 1%;
+  text-decoration: none;
+  font-size: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.sidebar_TC li{
+  padding: 20px;
+  border-bottom: 1px solid;
+
+}
+
+.sidebar_TC li {
+  color: black;
+  display: block;
+}
+
+.sidebar_TC li:hover{
+  background:#DD4C48;
+}
+

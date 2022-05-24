@@ -1,6 +1,6 @@
 <div>
   <div class="setrow">
-    <label>YEAR</label>
+    <label>ปีการศึกษา</label>
     <div class="select">
       <select [(ngModel)]="Watch_Year">
         <option *ngFor="let sublist of Watch_Year_list" [value]="sublist">
@@ -8,7 +8,7 @@
         </option>
       </select>
     </div>
-    <label>Semester</label>
+    <label>เทอม</label>
     <div class="select">
       <select [(ngModel)]="Watch_Semester">
         <option *ngFor="let sublist of Watch_Semester_list" [value]="sublist">
@@ -16,23 +16,23 @@
         </option>
       </select>
     </div>
-    <button (click)="onSubmitYear()">Watch schedule</button>
+    <button (click)="onSubmitYear()">ตรวจสอบข้อมูล</button>
   </div>
-  
+
 </div>
-<div *ngIf="result.length===0">
+<div class ="not_found"*ngIf="result.length===0">
   <label>ไม่มีข้อมูล</label>
 </div>
 <div *ngIf="result.length!==0">
 <table>
   <tr>
-    <th>Subject ID</th>
-    <th>Subject Name</th>
-    <th>Subject Section</th>
+    <th>รหัสวิชา</th>
+    <th>ชื่อวิชา</th>
+    <th>ตอนเรียน</th>
     <th>Subject Date</th>
-    <th>Subject Time</th>
-    <th>Subject Exam Date</th>
-    <th>Subject Exam Time</th>
+    <th>เวลาเรียน</th>
+    <th>วันสอบ</th>
+    <th>เวลาสอบ</th>
   </tr>
   <tr *ngFor="let item of result">
     <td>{{item.Subject_ID}}</td>

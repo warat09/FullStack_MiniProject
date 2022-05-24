@@ -1,9 +1,9 @@
 <body>
-<div *ngIf="!availableSubject" [ngStyle]="{color: 'black'}">
-  <label>ลงทะเบียนเรียนไปเเล้ว</label>
+<div class="register_suc" *ngIf="!availableSubject" [ngStyle]="{color: 'black'}">
+  <h2>ลงทะเบียนเรียนไปเเล้ว</h2>
 </div>
-<div *ngIf="availableSubject">
-  <div>
+<div class="xd" *ngIf="availableSubject">
+  <div class="pre_register">
     <div *ngFor="let list of availableSubject.Result" [ngStyle]="{color:'black',background:'white'}">
       <input type="checkbox" [checked] = "list.Subject_Checked" [(ngModel)]="list.Subject_Checked">
       {{list.Subject_ID+" "+list.Subject_Name+" Section "+list.Subject_Section +" Date "+list.Subject_Date+" Time "+list.Subject_Time}}
@@ -13,8 +13,11 @@
         </option>
       </select>
     </div>
-    <div>
-      <button (click)="onSubmitRegistrationArray()">Register</button>
+    <div class="not_register">
+      <h2>ยังไม่ได้ลงทะเบียนเรียน</h2>
+      <div class="register_btn">
+      <button (click)="onSubmitRegistrationArray()">ลงทะเบียน</button>
+    </div>
     </div>
   </div>
 </div>
