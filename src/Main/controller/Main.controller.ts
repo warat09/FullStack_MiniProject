@@ -59,7 +59,7 @@ export class MainController {
             Type:"Student",
             message:"Login success!!",
             Token:await this.AuthService.GetToken(payload),
-            User_Name:resultSTU.Student_Name,
+            User_Name:resultSTU.Student_Name+" "+resultSTU.Student_Sur_Name,
             User_Phone:resultSTU.Student_Phone,
             User_ID:resultSTU.Student_ID,
             User_ID_2:resultSTU.Student_ID_Student,
@@ -80,6 +80,7 @@ export class MainController {
             Type:"Teacher",
             message:"Login success!!",
             Token:await this.AuthService.GetToken(payload),
+            User_Name:resultTEACH.Teacher_Name+" "+resultTEACH.Teacher_Sur_Name,
             User_ID:resultTEACH.Teacher_ID_Teacher,
           };
         }
@@ -91,19 +92,19 @@ export class MainController {
       }
     }
   }
-
   @UseGuards(JwtAuthGuard)
   @Get("/Tokencheck")
   async Tokencheck()
   {
     return {message:"PASS"};
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get("/GetSubject")
   async GetSubject(@Req() req:Request)
   {
     return this.StudentService.findAll();
   }
+  @UseGuards(JwtAuthGuard)
   @Get("/AlreadyRegis/:id")
   async AlreadyRegis(@Param() params)
   {
@@ -114,6 +115,7 @@ export class MainController {
     }
     return {result:false};
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/AddRegistrationList/:id")
   async AddRegistrationList(@Body() listRegistration:any,@Param() params)
   {
@@ -167,6 +169,7 @@ export class MainController {
     }
     return {result:"success",message:result};
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/RegistrationList")
   async RegistrationList(@Body() listRegistration:any)
   {
@@ -213,6 +216,7 @@ export class MainController {
     }
     return {result:"success",message:result};
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/Registration")
   async Registration(@Body() RegistrationDto: Registration)
   {
@@ -300,6 +304,8 @@ export class MainController {
                 Subject_DateList:[Subject.Teach_Date],
                 Subject_Time:Subject.Teach_Time,
                 Subject_TimeList:[Subject.Teach_Time],
+                Subject_Exam_Date:Subject.Exam_Date,
+                Subject_Exam_Time:Subject.Exam_Time,
                 Subject_Checked:false
               }
               SubjectResult.push(data);
@@ -310,7 +316,7 @@ export class MainController {
     }
     return {Result:SubjectResult}
   }
-
+  @UseGuards(JwtAuthGuard)
   @Post("/AddSubject")
   async addSubject2Teach(@Body() TeachDto: Teach)
   {
@@ -330,12 +336,13 @@ export class MainController {
     }
     return this.TeachService.createTeach(newOpenSubject);
   }
+  @UseGuards(JwtAuthGuard)
   @Patch("/UpdateYear")
   async UpdateYear(@Req() req:Request)
   {
     return this.StudentService.UpdateYearALL(req.body.year);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get("/GetSchedule/:id/:year/:semester")
   async GetSchedule(@Param() params)
   {
@@ -367,6 +374,7 @@ export class MainController {
     }
     return result;
   }
+  @UseGuards(JwtAuthGuard)
   @Get("/GetRegistrationResult/:id/:year/:semester")
   async GetRegistrationResult(@Param() params)
   {
@@ -399,6 +407,7 @@ export class MainController {
     }
     return result;
   }
+  @UseGuards(JwtAuthGuard)
   @Patch("/DropSubject")
   async DropSubject(@Body() regisDto: any)
   {
@@ -414,11 +423,13 @@ export class MainController {
     }
     return result
   }
+  @UseGuards(JwtAuthGuard)
   @Get("/Get_Teach_Subject")
   async getSubject(@Param() params)
   {
     return this.SubjectService.findAll();
   }
+  @UseGuards(JwtAuthGuard)
   @Post("/AddTeach")
   async AddTeach(@Body() Data:any)
   {
