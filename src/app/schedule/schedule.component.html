@@ -16,7 +16,7 @@
         </option>
       </select>
     </div>
-    <button (click)="onSubmitYear()">ตรวจสอบข้อมูล</button>
+    <button style="font-size:20px;" (click)="onSubmitYear()">ตรวจสอบข้อมูล</button>
   </div>
 
 </div>
@@ -33,6 +33,7 @@
     <th>เวลาเรียน</th>
     <th>วันสอบ</th>
     <th>เวลาสอบ</th>
+    <th>อาจารย์</th>
   </tr>
   <tr *ngFor="let item of result">
     <td>{{item.Subject_ID}}</td>
@@ -42,6 +43,7 @@
     <td>{{item.Teach_Time}}</td>
     <td>{{item.Exam_Date}}</td>
     <td>{{item.Exam_Time}}</td>
+    <td>{{item.Teacher_Name+" "+item.Teacher_Sur_Name}}</td>
   </tr>
 </table>
 </div>

@@ -32,7 +32,9 @@ export class ScheduleComponent implements OnInit {
 
   }
   onSubmitYear():void{
-    this.http.get<any>(`http://localhost:9090/Main/GetSchedule/${this.mydata.User_ID_2}/${this.Watch_Year}/${this.Watch_Semester}`).subscribe(
+    this.http.get<any>(`http://localhost:9090/Main/GetSchedule/${this.mydata.User_ID_2}/${this.Watch_Year}/${this.Watch_Semester}`,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
       res=>{this.result=res,console.log(res)})
   }
 }

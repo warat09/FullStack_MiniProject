@@ -94,6 +94,7 @@ a:link{
 }
 
 .broadcast{
+  padding: 20px;
   display: block;
   border: 2px solid hsl(27, 100%, 48%);
   border-radius: 10px;

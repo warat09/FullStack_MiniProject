@@ -20,7 +20,7 @@ const routes: Routes = [
 [
   { path:'Register', component: RegisterComponent,data: {title: 'ลงวิชาเรียน'}},
   { path:'addCourse', component: AddCourseComponent,data: {title: 'เพิ่มวิชาเรียน'}},
-  { path:'changeSection', component: ChangesectionComponent,data: {title: 'เปลี่ยนตอนเรียน'} },
+  // { path:'changeSection', component: ChangesectionComponent,data: {title: 'เปลี่ยนตอนเรียน'} },
   { path:'dropCourse', component: DropCourseComponent,data: {title: 'ถอนวิชาเรียน'}},
   { path:'checkRegister', component: CheckRegisterComponent,data: {title: 'ผลลงทะเบียน'}},
   { path:'grade', component: GradeComponent,data: {title: 'ผลการเรียน'}},

@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         console.log(res.message)
+        alert(res.message)
       }
 
     });

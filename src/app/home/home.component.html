@@ -1,13 +1,13 @@
 <body>
 <div class="banner">
-<h1>ลงทะเบียน KMUTNB</h1>
+<h1 style="font-size: 40px ; margin: 20px;">ลงทะเบียน KMUTNB</h1>
 </div>
   <div class ="nav-std"*ngIf="Type === 'Student'">
     <nav class="sidebar">
-      <p>คุณ {{Username}}</p>
+      <p style="color: black ;">คุณ {{Username}}</p>
       <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
         <li><a routerLink="addCourse">เพิ่มวิชาเรียน</a></li>
-        <li><a routerLink="changeSection">เปลี่ยนตอนเรียน</a></li>
+        <!-- <li><a routerLink="changeSection">เปลี่ยนตอนเรียน</a></li> -->
         <li><a routerLink="dropCourse">ถอนวิชาเรียน</a></li>
         <li><a routerLink="checkRegister">ผลลงทะเบียน</a></li>
         <li><a routerLink="grade">ผลการเรียน</a></li>
@@ -15,7 +15,7 @@
       <button class = "Logout"(click)="onLogout()">Logout</button>
       </nav>
       <div class="broadcast" *ngIf="router.url === '/Home'">
-        <h2>กรุณาเลือกการทำงาน จากเมนูซ้ายบน</h2>
+        <h2 style="font-size: 30px;">กรุณาเลือกการทำงาน จากเมนูซ้ายบน</h2>
         <ul>
           <li><b>การลงทะเบียน</b> ประกอบไปด้วยเมนูสำหรับลงทะเบียนในภาคการเรียนการศึกษาปัจจุบัน</li>
           <ul>
@@ -35,7 +35,7 @@
 </div>
 <div class="nav-std" *ngIf="Type === 'Teacher'">
   <nav class ="sidebar_TC">
-    <p>คุณ {{Username}}</p>
+    <p style="color: black ;" >คุณ {{Username}}</p>
     <li><a routerLink="AddTeachSubject">เปิดวิชาเรียน</a></li>
     <li><a routerLink="WatchTeachSubjectData">ดูข้อมูลวิชาที่สอน</a></li>
     <li><a routerLink="AddGradeSubject">ให้ผลการเรียน</a></li>

@@ -21,6 +21,10 @@ import { TeachWatchSubjectDataComponent } from './teach-watch-subject-data/teach
 import { TeachScheduleComponent } from './teach-schedule/teach-schedule.component';
 import { TeachAddGradeComponent } from './teach-add-grade/teach-add-grade.component';
 import { InstructionComponent } from './instruction/instruction.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { InstructionComponent } from './instruction/instruction.component';
     FormsModule,
     HomeModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

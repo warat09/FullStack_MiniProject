@@ -18,7 +18,9 @@ export class DropCourseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(`http://localhost:9090/Main/GetSchedule/${this.mydata.User_ID_2}/${this.year}/${this.semester}`).subscribe(
+    this.http.get<any>(`http://localhost:9090/Main/GetSchedule/${this.mydata.User_ID_2}/${this.year}/${this.semester}`,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
       res=>{this.currentSubject = res})
   }
   onSubmitDrop():void{
@@ -37,9 +39,13 @@ export class DropCourseComponent implements OnInit {
         })
       }
     }
-    console.log(result)
     this.http.patch("http://localhost:9090/Main/DropSubject",{
       Data:result
-    }).subscribe(res=>console.log(res))
+    },{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(res=>{this.http.get<any>(`http://localhost:9090/Main/GetSchedule/${this.mydata.User_ID_2}/${this.year}/${this.semester}`,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
+      res=>{this.currentSubject = res})})
   }
 }

@@ -33,12 +33,16 @@ export class TeachAddGradeComponent implements OnInit {
   }
 
   onSubmitYear():void{
-    this.http.get<any>(`http://localhost:9090/Main/Get_Teach/${this.mydata.User_ID}/${this.Watch_Year}/${this.Watch_Semester}`).subscribe(
+    this.http.get<any>(`http://localhost:9090/Main/Get_Teach/${this.mydata.User_ID}/${this.Watch_Year}/${this.Watch_Semester}`,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
       res=>{this.result =res})
   }
   onSubmitUpdateData():void{
     console.log(this.result)
-    this.http.patch('http://localhost:9090/Main/UpdateGrade',this.result).subscribe(
+    this.http.patch('http://localhost:9090/Main/UpdateGrade',this.result,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
       res=>console.log(res)
     )
   }

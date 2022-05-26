@@ -7,15 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent implements OnInit {
-
-
+  Watch_Semester:string;
+  Watch_Year:number;
   mydata:any
   availableSubject:any
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.Watch_Semester = "1"
+    this.Watch_Year = new Date().getFullYear()+543;
+  }
 
   ngOnInit(): void {
     this.mydata = (JSON.parse(localStorage.getItem('userData') || '{}'))
-    this.http.get<any>(`http://localhost:9090/Main/AlreadyRegis/${this.mydata.User_ID_2}`).subscribe(
+    this.http.get<any>(`http://localhost:9090/Main/AlreadyRegis/${this.mydata.User_ID_2}`,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
       res=>{
         if(res.result)
         {
@@ -25,6 +30,7 @@ export class AddCourseComponent implements OnInit {
         }
       }
     )
+
     // this.http.get(`http://localhost:9090/Main/AvailableSubject/${this.mydata.User_ID_2}`,{
     // }).subscribe(res=>{this.availableSubject = res;});
   }
@@ -44,6 +50,8 @@ export class AddCourseComponent implements OnInit {
     }
     this.http.post(`http://localhost:9090/Main/AddRegistrationList/${this.mydata.User_ID_2}`,{
       Data:result
+    },{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
     }).subscribe(res=>{
       const result:any = res;
       if(result.result === "error")

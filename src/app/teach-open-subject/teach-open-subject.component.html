@@ -43,7 +43,13 @@
   </div>
   <div class="Exam_Date">
     <label>วันที่สอบ </label>
-    <input  formControlName="Exam_Date" name="ExamDate" class="input">
+    <!-- <input  formControlName="Exam_Date" name="ExamDate" class="input"> -->
+    <mat-form-field appearance="fill" style="background-color: #34495e; color:white; height: 70px;">
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="Exam_Date" name="ExamDate" [min]="currentDate"  matInput [matDatepicker]="dp1">
+      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+      <mat-datepicker  #dp1 disabled="false"></mat-datepicker>
+    </mat-form-field>
   </div>
   <div class="Exam_Time">
     <label>เวลาสอบ </label>
@@ -55,7 +61,7 @@
   </div>
   <div class="Student_n">
     <label>จำนวนนักเรียน </label>
-    <input  formControlName="Teach_Max_Student" name="TeachMaxStudent" class="input">
+    <input style="width: 100px; " formControlName="Teach_Max_Student" name="TeachMaxStudent" class="input">
   </div>
 </div>
 <div class="Add">

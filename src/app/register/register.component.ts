@@ -9,24 +9,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  // food = [
-  //     {id:1,select:false,name:'123123'},
-  //     {id:2,select:false,name:'123123'},
-  //     {id:3,select:false,name:'123123'},
-  // ];
   mydata:any
+  Watch_Semester:string;
+  Watch_Year:number;
   availableSubject:any
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.Watch_Semester = "1"
+    this.Watch_Year = new Date().getFullYear()+543;
+  }
 
   ngOnInit(): void {
     this.mydata = (JSON.parse(localStorage.getItem('userData') || '{}'))
-    this.http.get<any>(`http://localhost:9090/Main/AlreadyRegis/${this.mydata.User_ID_2}`).subscribe(
+    this.http.get<any>(`http://localhost:9090/Main/AlreadyRegis/${this.mydata.User_ID_2}`,{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
+    }).subscribe(
       res=>{
         if(!res.result)
         {
           this.http.get(`http://localhost:9090/Main/AvailableSubject/${this.mydata.User_ID_2}`,{
             headers:{Authorization: `Bearer ${this.mydata.Token}`}
-          }).subscribe(res=>{this.availableSubject = res;});
+          }).subscribe(res=>{this.availableSubject = res;console.log(res)});
         }
       }
     )
@@ -53,6 +55,8 @@ export class RegisterComponent implements OnInit {
     }
     this.http.post("http://localhost:9090/Main/RegistrationList",{
       Data:result
+    },{
+      headers:{Authorization: `Bearer ${this.mydata.Token}`}
     }).subscribe(res=>{
       const result:any = res;
       if(result.result === "error")
@@ -62,6 +66,10 @@ export class RegisterComponent implements OnInit {
       else
       {
         console.log(result.message);
+        if(result.message.length!==0)
+        {
+          this.availableSubject = null
+        }
       }
     })
   }
