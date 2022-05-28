@@ -38,9 +38,9 @@ export class TeachService {
     {
         return this.TeachModel.findOne({Subject_ID:id,Teach_Year:year,Teach_Semester:semester,Teach_Section_Num:sec})
     }
-    async getTeachByTeach_Date_Time(Date:string,Time:string,year:number,semester:string)
+    async getTeachByTeach_Date_Time(ID:string,Date:string,Time:string,year:number,semester:string)
     {
-        return this.TeachModel.findOne({Teach_Date:Date,Teach_Time:Time,Teach_Year:year,Teach_Semester:semester})
+        return this.TeachModel.findOne({Teach_ID:ID,Teach_Date:Date,Teach_Time:Time,Teach_Year:year,Teach_Semester:semester})
     }
     async getTeachByExam_Date_Time(Date:string,Time:string,year:number,semester:string)
     {

@@ -108,7 +108,7 @@ export class MainController {
   @Get("/AlreadyRegis/:id")
   async AlreadyRegis(@Param() params)
   {
-    const AlreadyRegis = await this.RegistrationService.getAlreadyRegistDataByID(params.id);
+    const AlreadyRegis = await this.RegistrationService.getAlreadyRegistDataByID(params.id,this.currentYear.getFullYear()+543,this.currentSemester);
     if(AlreadyRegis.length>0)
     {
       return {result:true};
@@ -119,7 +119,7 @@ export class MainController {
   @Post("/AddRegistrationList/:id")
   async AddRegistrationList(@Body() listRegistration:any,@Param() params)
   {
-    const AlreadyRegis = await this.RegistrationService.getAlreadyRegistDataByID(params.id);
+    const AlreadyRegis = await this.RegistrationService.getAlreadyRegistDataByID(params.id,this.currentYear.getFullYear()+543,this.currentSemester);
     const DateChecker =[]
     const DateData = [];
     const result = [];
@@ -438,7 +438,7 @@ export class MainController {
     {
       return {message:"Already Added!!!"}
     }
-    const AllreadyTeach_time = await this.TeachService.getTeachByTeach_Date_Time(Data.Teach_Date,Data.Teach_Time,this.currentYear.getFullYear()+543,this.currentSemester);
+    const AllreadyTeach_time = await this.TeachService.getTeachByTeach_Date_Time(Data.Teach_ID,Data.Teach_Date,Data.Teach_Time,this.currentYear.getFullYear()+543,this.currentSemester);
     if(AllreadyTeach_time !== null)
     {
       return {message:"TeachDate Added!!"}
@@ -458,10 +458,6 @@ export class MainController {
       Teach_Max_Student:Data.Teach_Max_Student
     })
   }
-
-
-
-
   @Get("/Get_Teach/:id/:year/:semester")
   async GetTeach(@Param() params)
   {

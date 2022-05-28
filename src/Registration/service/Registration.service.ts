@@ -28,12 +28,12 @@ export class RegistrationService {
     // {
     //     return this.RegistrationModel.find({Student_ID_Student:student_ID,Registration_Year:Year,Registration_Semester:Semester,Registration_GPA:"W"})
     // }
-    async getAlreadyRegistDataByID(student_ID:string): Promise<Registration[]>
+    async getAlreadyRegistDataByID(student_ID:string,year:number,semester:string): Promise<Registration[]>
     {
         return this.RegistrationModel.find({Student_ID_Student:student_ID}).then(result=>{
             const Data:Registration[] = [];
             result.forEach(res=>{
-                if(res.Registration_GPA==="")
+                if((res.Registration_GPA===""||res.Registration_GPA==="W")&&res.Registration_Year===year && res.Registration_Semester === semester)
                 {
                     Data.push(res);
                 }
@@ -46,7 +46,7 @@ export class RegistrationService {
         return this.RegistrationModel.find({Student_ID_Student:student_ID}).then(result=>{
             const Data:Array<string>=[];
             result.forEach(res=>{
-                if(res.Registration_GPA===""||(res.Registration_GPA==="W" && res.Registration_Year===year && res.Registration_Semester === semester))
+                if((res.Registration_GPA===""||res.Registration_GPA==="W") && res.Registration_Year===year && res.Registration_Semester === semester)
                 {
                     Data.push(res.Subject_ID);
                 }
@@ -67,7 +67,7 @@ export class RegistrationService {
         const Subject = await this.RegistrationModel.findOne({Student_ID_Student:STD_ID,Subject_ID:SUB_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
         if(Subject!==null)
         {
-            Subject.set({Registration_GPA:"W"})
+            Subject.set({Registration_GPA:"W",Registration_Paid:"DROP"})
             await Subject.save()
         }
         return Subject
@@ -84,6 +84,6 @@ export class RegistrationService {
     }
     async GetStudentData(Sub_ID:string,Year:number,Section:string,Semester:string)
     {
-        return this.RegistrationModel.find({Subject_ID:Sub_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester})
+        return this.RegistrationModel.find({Subject_ID:Sub_ID,Registration_Year:Year,Registration_Section:Section,Registration_Semester:Semester,Registration_GPA:["","A","B","C","D","F"]})
     }
 }
