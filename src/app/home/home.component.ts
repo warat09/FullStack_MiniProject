@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
   mydata:any
   Username:any
   public Type:any
+  public current:any
   constructor(private http:HttpClient,public router: Router) {
+    this.current = new Date().getFullYear()+543;
   }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
     }
     this.Username = this.mydata.User_Name
     this.Type = this.mydata.Type
+    this.current-=(this.mydata.User_Year-1)
     console.log(this.router.url)
   }
   onLogout():void

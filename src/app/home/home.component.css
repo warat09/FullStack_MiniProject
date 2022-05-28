@@ -10,7 +10,7 @@ body{
 }
  .sidebar{
   position: fixed;
-  width: 180px;
+  width: 300px;
   height: 580px;
   background: hsl(27, 100%, 48%);
   padding: 30px;
@@ -20,7 +20,7 @@ body{
   text-decoration: none;
   font-size: 20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-
+  color: white;
 }
  p{
   font-size: 20px;
@@ -100,7 +100,7 @@ a:link{
   border-radius: 10px;
   height: auto;
   width: 1400px;
-  margin-left: 500px;
+  margin-left: 550px;
   background:hsl(27, 100%, 48%) ;
   color: #FFFFFF;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -135,6 +135,7 @@ a:link{
   text-decoration: none;
   font-size: 20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  color: white;
 }
 
 .sidebar_TC li{

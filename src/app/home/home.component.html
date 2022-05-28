@@ -4,7 +4,7 @@
 </div>
   <div class ="nav-std"*ngIf="Type === 'Student'">
     <nav class="sidebar">
-      <p style="color: black ;">คุณ {{Username}}</p>
+      <p style="color: black ; font-size:20px;">คุณ {{Username}} ปี {{current}}</p>
       <li><a routerLink="Register">ลงทะเบียนเรียน</a></li>
         <li><a routerLink="addCourse">เพิ่มวิชาเรียน</a></li>
         <!-- <li><a routerLink="changeSection">เปลี่ยนตอนเรียน</a></li> -->
@@ -35,7 +35,7 @@
 </div>
 <div class="nav-std" *ngIf="Type === 'Teacher'">
   <nav class ="sidebar_TC">
-    <p style="color: black ;" >คุณ {{Username}}</p>
+    <p style="color: black ; font-size:20px;" >คุณ {{Username}}</p>
     <li><a routerLink="AddTeachSubject">เปิดวิชาเรียน</a></li>
     <li><a routerLink="WatchTeachSubjectData">ดูข้อมูลวิชาที่สอน</a></li>
     <li><a routerLink="AddGradeSubject">ให้ผลการเรียน</a></li>

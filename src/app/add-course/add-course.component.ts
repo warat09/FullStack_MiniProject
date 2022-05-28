@@ -22,6 +22,7 @@ export class AddCourseComponent implements OnInit {
       headers:{Authorization: `Bearer ${this.mydata.Token}`}
     }).subscribe(
       res=>{
+        console.log(res.result);
         if(res.result)
         {
           this.http.get(`http://localhost:9090/Main/AvailableSubject/${this.mydata.User_ID_2}`,{
@@ -60,6 +61,20 @@ export class AddCourseComponent implements OnInit {
       }
       else
       {
+        this.mydata = (JSON.parse(localStorage.getItem('userData') || '{}'))
+        this.http.get<any>(`http://localhost:9090/Main/AlreadyRegis/${this.mydata.User_ID_2}`,{
+          headers:{Authorization: `Bearer ${this.mydata.Token}`}
+        }).subscribe(
+          res=>{
+            console.log(res.result);
+            if(res.result)
+            {
+              this.http.get(`http://localhost:9090/Main/AvailableSubject/${this.mydata.User_ID_2}`,{
+                headers:{Authorization: `Bearer ${this.mydata.Token}`}
+              }).subscribe(res=>{this.availableSubject = res;});
+            }
+          }
+        )
         console.log(result.message);
       }
     })

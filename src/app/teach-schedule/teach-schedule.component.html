@@ -26,12 +26,14 @@
   <tr>
     <th>รหัสวิชา</th>
     <th>ชื่อวิชา</th>
+    <th>ตอนเรียน</th>
     <th>วันที่สอน</th>
     <th>เวลาที่สอน</th>
   </tr>
   <tr *ngFor="let item of result">
     <td>{{item.Subject_ID}}</td>
     <td>{{item.Subject_Name}}</td>
+    <td>{{item.Teach_Section_Num}}</td>
     <td>{{item.Teach_Date}}</td>
     <td>{{item.Teach_Time}}</td>
   </tr>

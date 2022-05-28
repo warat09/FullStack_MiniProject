@@ -43,7 +43,7 @@ export class TeachAddGradeComponent implements OnInit {
     this.http.patch('http://localhost:9090/Main/UpdateGrade',this.result,{
       headers:{Authorization: `Bearer ${this.mydata.Token}`}
     }).subscribe(
-      res=>console.log(res)
+      res=>{console.log(res); alert("Updateed");}
     )
   }
 }

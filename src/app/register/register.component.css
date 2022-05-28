@@ -39,6 +39,7 @@
 }
 .pre_register{
   background-color: hsl(27, 100%, 48%);
+  color: white;
 }
 .pre_register h1{
   text-align: center;
